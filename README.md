@@ -1,6 +1,6 @@
 # DayToday
 
-Uma API para o sistema de controle de rorinas pessoais.
+Uma API para o sistema de controle de rotinas pessoais.
 
 ## Endpoints
 - Metas
