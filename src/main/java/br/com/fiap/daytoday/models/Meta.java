@@ -1,45 +1,43 @@
 package br.com.fiap.daytoday.models;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity
+@AllArgsConstructor
+@Builder
 public class Meta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Id(value=0, message = "O id do nome do usuário")
     private int nome_id;
+
+    @Id(value=0, message = "O id da categoria")
     private int categoria_id;
+
+    @NotBlank @Size(min = 5, max = 255)
     private String descricao;
-    
-    public Meta(int nome_id, int categoria_id, String descricao) {
-        this.nome_id = nome_id;
-        this.categoria_id = categoria_id;
-        this.descricao = descricao;
-    }    
-    
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public int getNome_id() {
-        return nome_id;
-    }
-    public void setNome_id(int nome_id) {
-        this.nome_id = nome_id;
-    }
-    public int getCategoria_id() {
-        return categoria_id;
-    }
-    public void setCategoria_id(int categoria_id) {
-        this.categoria_id = categoria_id;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
-    @Override
-    public String toString() {
-        return "Meta [ Id do nome de usuário= " + nome_id + ", O id da categoria= " + categoria_id + ", Descricao= " + descricao + "]";
-    }
-
+    @NotNull
+    @ManyToOne
+    private Contas Contas;
+    
 }
